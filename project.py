@@ -183,9 +183,9 @@ def exact_suffix_matches(p, M, occ):
 	EP=M[Order_char[next_index]]-1
 	# print(SP,EP)
 	
-	for i in range(len(p)-1,0,-1):
+	for i in range(len(p)-1,-1,-1):
 
-		start = len(p)-i
+		start = i
 		# Initialize search pointers:
 		if(M[p[start]]+occ[p[start]][SP-1]<M[p[start]]+occ[p[start]][EP]-1):
 			SP = M[p[start]]+occ[p[start]][SP-1]
@@ -193,24 +193,7 @@ def exact_suffix_matches(p, M, occ):
 		else:
 			return (SP,EP+1),len(p)-i
 	
-	#initialize:
-	start = len(p)-1
-	SP = M[p[start]]
-	next_index = (1 + Order_char.index(p[start]))%len(Order_char)   
-	EP=M[Order_char[next_index]]-1
-	# print(SP,EP)
 	
-	for i in range(len(p)):
-		start = len(p)-i-2
-		# Initialize search pointers:
-		if(M[p[start]]+occ[p[start]][SP-1]<M[p[start]]+occ[p[start]][EP]-1):
-			SP = M[p[start]]+occ[p[start]][SP-1]
-			# print(SP)
-			EP = M[p[start]]+occ[p[start]][EP]-1
-			# print(EP)
-		# print("this is "+str(SP)+" "+str(EP))
-		else:
-			return((SP,EP+1),i+1)
 
 def inexact_substring(str, substr, mis, first=True):
 	
